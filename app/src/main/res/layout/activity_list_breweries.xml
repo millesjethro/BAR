@@ -76,19 +76,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="RESET"
-        app:layout_constraintTop_toBottomOf="@+id/rvBrew"
-        tools:layout_editor_absoluteX="158dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loadingimg"
-        android:layout_width="match_parent"
-        android:layout_height="508dp"
+        android:layout_width="411dp"
+        android:layout_height="541dp"
         android:layout_marginTop="48dp"
-        android:src="@drawable/barrel"
-        android:background="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/juice"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

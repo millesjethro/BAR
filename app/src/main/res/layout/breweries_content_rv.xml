@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="200dp"
     android:layout_marginTop="20dp">
 
     <ImageView
@@ -128,5 +128,13 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addfav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ADD TO FAVORITES"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        tools:layout_editor_absoluteX="-1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
