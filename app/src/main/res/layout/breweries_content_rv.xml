@@ -2,32 +2,29 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_width="150dp"
+    android:layout_height="520dp"
+    android:layout_marginLeft="10dp"
     android:layout_marginTop="20dp">
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="413dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#99365475"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:background="#99365475" />
 
     <TextView
         android:id="@+id/companyName"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="10-56 Brewing Company"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="15dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,12 +32,12 @@
         android:id="@+id/flagImg"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="96dp"
         android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.092"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/companyName"
+        app:layout_constraintEnd_toEndOf="@+id/companyName"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/companyName"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
@@ -83,9 +80,10 @@
 
     <TextView
         android:id="@+id/txtBrewerytype"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Brewery Type:"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/brewtype"
@@ -96,33 +94,32 @@
         android:id="@+id/brewtype"
         android:layout_width="85dp"
         android:layout_height="85dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.43"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/companyName"
-        app:layout_constraintVertical_bias="0.051"
+        app:layout_constraintEnd_toEndOf="@+id/txtCity"
+        app:layout_constraintHorizontal_bias="0.471"
+        app:layout_constraintStart_toStartOf="@+id/txtCity"
+        app:layout_constraintTop_toBottomOf="@+id/txtCity"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="53dp"
         android:layout_height="50dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.883"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/companyName"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/txtBrewerytype"
+        app:layout_constraintHorizontal_bias="0.5
+"
+        app:layout_constraintStart_toStartOf="@+id/txtBrewerytype"
+        app:layout_constraintTop_toBottomOf="@+id/txtBrewerytype"
         app:srcCompat="@drawable/id" />
 
     <TextView
         android:id="@+id/txtid"
-        android:layout_width="115dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:text="TextView"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -133,8 +130,9 @@
         android:id="@+id/addfav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:text="ADD TO FAVORITES"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        tools:layout_editor_absoluteX="-1dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

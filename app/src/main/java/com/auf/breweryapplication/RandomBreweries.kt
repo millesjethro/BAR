@@ -37,7 +37,7 @@
         brewingData = arrayListOf()
         adapter = DataAdapters(brewingData, this)
 
-        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         binding.rvRandom.layoutManager = layoutManager
         binding.rvRandom.adapter = adapter
 

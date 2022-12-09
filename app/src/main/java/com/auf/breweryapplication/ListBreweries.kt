@@ -38,7 +38,7 @@ class ListBreweries : AppCompatActivity(), View.OnClickListener{
         brewingData = arrayListOf()
         adapter = DataAdapters(brewingData, this)
 
-        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         binding.rvBrew.layoutManager = layoutManager
         binding.rvBrew.adapter = adapter
 
@@ -58,7 +58,7 @@ class ListBreweries : AppCompatActivity(), View.OnClickListener{
         binding.rvBrew.addOnScrollListener(object: RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                if(!recyclerView.canScrollVertically(1) && newState == RecyclerView.SCROLL_STATE_IDLE){
+                if(!recyclerView.canScrollHorizontally(1) && newState == RecyclerView.SCROLL_STATE_IDLE){
                     if(!isLoading){
                         isLoading = true
                         loadingData()
@@ -100,6 +100,7 @@ class ListBreweries : AppCompatActivity(), View.OnClickListener{
         when(p0!!.id){
             (R.id.btnReset)->{
                 startLoading()
+                pageCount = 1
                 resetDatas()
                 BreweriesData(newData)
             }
