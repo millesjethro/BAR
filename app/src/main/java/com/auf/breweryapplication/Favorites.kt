@@ -65,7 +65,7 @@ class Favorites : AppCompatActivity(), BrewDBAdapters.BrewDBAdaptersInterface {
     override fun removeFav(id: String) {
         val scope = CoroutineScope(coroutine)
         scope.launch (Dispatchers.IO) {
-            operation.removeBrewery(id)
+            operation.removeBrew(id)
             withContext(Dispatchers.Main){
                 getBrew()
             }
