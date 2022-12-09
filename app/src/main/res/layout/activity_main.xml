@@ -10,85 +10,125 @@
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="match_parent"
-        android:layout_height="410dp"
+        android:layout_height="357dp"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/charcoal_brewery_beer_mug_logo"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="-1dp" />
 
 
     <ImageView
         android:id="@+id/brewList"
-        android:layout_width="390dp"
-        android:layout_height="117dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="190dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="12dp"
         android:alpha="0.3"
         android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <ImageView
-        android:id="@+id/brewRandom"
-        android:layout_width="390dp"
-        android:layout_height="117dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/favorites"
+        android:layout_width="190dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="8dp"
         android:alpha="0.3"
         android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="@+id/brewList"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imgListBrew"
-        app:layout_constraintTop_toBottomOf="@+id/brewList" />
+        app:layout_constraintEnd_toEndOf="@+id/brewRandom"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/brewList"
+        app:layout_constraintTop_toBottomOf="@+id/brewRandom" />
+
+    <ImageView
+        android:id="@+id/brewRandom"
+        android:layout_width="190dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="12dp"
+        android:alpha="0.3"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/brewList"
+        app:layout_constraintStart_toEndOf="@+id/brewList"
+        app:layout_constraintTop_toTopOf="@+id/brewList"
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imgListBrew"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="@+id/brewList"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/brewList"
         app:layout_constraintTop_toTopOf="@+id/brewList"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <ImageView
+        android:id="@+id/imgFavBrew"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="@+id/favorites"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/favorites"
+        app:layout_constraintTop_toTopOf="@+id/favorites"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <ImageView
         android:id="@+id/imgRandomBrewery"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="@+id/brewRandom"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/brewRandom"
         app:layout_constraintTop_toTopOf="@+id/brewRandom"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_width="147dp"
+        android:layout_height="31dp"
         android:text="LIST BREWERY"
         android:textColor="@color/white"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imgListBrew"
-        app:layout_constraintStart_toEndOf="@+id/imgListBrew"
-        app:layout_constraintTop_toTopOf="@+id/imgListBrew"
-        app:layout_constraintVertical_bias="0.55" />
+        app:layout_constraintBottom_toBottomOf="@+id/brewList"
+        app:layout_constraintEnd_toEndOf="@+id/brewList"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/brewList" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="147dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="8dp"
+        android:text="FAVORITES"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/favorites"
+        app:layout_constraintEnd_toEndOf="@+id/favorites"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/favorites" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginBottom="12dp"
         android:text="RANDOM BREWERY"
         android:textColor="@color/white"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imgRandomBrewery"
-        app:layout_constraintStart_toEndOf="@+id/imgRandomBrewery"
-        app:layout_constraintTop_toTopOf="@+id/imgRandomBrewery" />
+        app:layout_constraintBottom_toBottomOf="@+id/brewRandom"
+        app:layout_constraintEnd_toEndOf="@+id/brewRandom"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/brewRandom" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

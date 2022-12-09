@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.auf.breweryapplication.Adaprters.DataAdapters
@@ -12,22 +13,27 @@ import com.auf.breweryapplication.Models.BrewingInformation
 import com.auf.breweryapplication.Services.Helper.Retrofit
 import com.auf.breweryapplication.Services.Repository.BreweriesAPI
 import com.auf.breweryapplication.databinding.ActivityListBreweriesBinding
+import com.auf.breweryapplication.realm.config.RealmConfig
+import com.auf.breweryapplication.realm.operations.brewDBOperations
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import io.realm.RealmConfiguration
+import kotlinx.coroutines.*
 import java.util.ArrayList
+import kotlin.coroutines.CoroutineContext
 import kotlin.random.Random
 
-class ListBreweries : AppCompatActivity(), View.OnClickListener{
+class ListBreweries : AppCompatActivity(), DataAdapters.DataAdaptersInterface, View.OnClickListener{
     private lateinit var binding: ActivityListBreweriesBinding
     private lateinit var adapter: DataAdapters
     private lateinit var brewingData: ArrayList<BrewingInformation>
     private var isLoading:Boolean = false
     private var pageCount = 1
     private var newData:String = ""
+    private lateinit var config: RealmConfiguration
+    private lateinit var operation: brewDBOperations
+    private lateinit var coroutine: CoroutineContext
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +42,7 @@ class ListBreweries : AppCompatActivity(), View.OnClickListener{
         setContentView(binding.root)
         supportActionBar?.hide()
         brewingData = arrayListOf()
-        adapter = DataAdapters(brewingData, this)
+        adapter = DataAdapters(brewingData, this, this)
 
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         binding.rvBrew.layoutManager = layoutManager
@@ -45,7 +51,9 @@ class ListBreweries : AppCompatActivity(), View.OnClickListener{
 
         binding.loadingimg.visibility = View.INVISIBLE
 
-
+        config = RealmConfig.getConfiguration()
+        operation = brewDBOperations(config)
+        coroutine = Job() + Dispatchers.IO
 
         binding.brewpubrb.setOnClickListener(this)
         binding.planningrb.setOnClickListener(this)
@@ -157,6 +165,27 @@ class ListBreweries : AppCompatActivity(), View.OnClickListener{
     private fun startLoading(){
         binding.loadingimg.visibility = View.VISIBLE
         binding.rvBrew.visibility = View.INVISIBLE
+    }
+
+    override fun addBrew(
+        name: String,
+        brewType: String,
+        country: String,
+        city: String,
+        state: String
+    ) {
+        val scope = CoroutineScope(coroutine)
+        scope.launch(Dispatchers.IO){
+            operation.insertBrew(name, brewType, country, city, state)
+            withContext(Dispatchers.Main){
+            }
+        }
+    }
+    override fun removeBrew(id: String) {
+        val scope = CoroutineScope(coroutine)
+        scope.launch(Dispatchers.IO){
+            operation.removeBrew(id)
+        }
     }
 
 }

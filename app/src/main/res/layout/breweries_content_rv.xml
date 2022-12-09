@@ -11,7 +11,7 @@
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#99365475" />
+        android:background="#45365475" />
 
     <TextView
         android:id="@+id/companyName"
@@ -97,7 +97,7 @@
         android:layout_marginTop="16dp"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="@+id/txtCity"
-        app:layout_constraintHorizontal_bias="0.471"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/txtCity"
         app:layout_constraintTop_toBottomOf="@+id/txtCity"
         app:srcCompat="@drawable/ic_launcher_background" />
@@ -126,13 +126,17 @@
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/addfav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:text="ADD TO FAVORITES"
+    <ImageView
+        android:id="@+id/favbtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/favorite"
+        android:tag="favorite"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

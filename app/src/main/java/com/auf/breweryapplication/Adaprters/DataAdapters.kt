@@ -7,12 +7,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.auf.breweryapplication.Models.BrewingInformation
 import com.auf.breweryapplication.R
 import com.auf.breweryapplication.databinding.BreweriesContentRvBinding
+import com.auf.breweryapplication.realm.config.RealmConfig
+import com.auf.breweryapplication.realm.operations.brewDBOperations
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import kotlinx.coroutines.*
 import java.io.Serializable
-import kotlin.coroutines.coroutineContext
 
-class DataAdapters(private var brewlist: ArrayList<BrewingInformation>, context: Context) : RecyclerView.Adapter<DataAdapters.BrewDataViewHolder>(), Serializable {
+class DataAdapters(private var brewlist: ArrayList<BrewingInformation>, private var context: Context, private var callback: DataAdaptersInterface) : RecyclerView.Adapter<DataAdapters.BrewDataViewHolder>(), Serializable {
+
+    interface  DataAdaptersInterface {
+        fun addBrew(name: String, brewType: String, country: String,city:String, state: String)
+        fun removeBrew(id: String)
+    }
+
     inner class BrewDataViewHolder(private val binding: BreweriesContentRvBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(itemData: BrewingInformation){
             binding.companyName.text = itemData.name
@@ -95,9 +103,35 @@ class DataAdapters(private var brewlist: ArrayList<BrewingInformation>, context:
                 .circleCrop()
                 .into(binding.flagImg)
 
+            val realmConfig = RealmConfig.getConfiguration()
+            val operations = brewDBOperations(realmConfig)
+            val coroutine = Job() + Dispatchers.IO
+
+            val scope = CoroutineScope(coroutine)
+            scope.launch(Dispatchers.IO){
+                val result = operations.filterBrew(itemData.id)
+                if (result.size != 0) {
+                    binding.favbtn.tag = "favorited"
+                    binding.favbtn.setImageResource(R.drawable.favorited)
+                }
+            }
+
+            binding.favbtn.setOnClickListener{
+                if(binding.favbtn.tag.equals("favorite")){
+                    binding.favbtn.setImageResource(R.drawable.favorited)
+                    binding.favbtn.tag = "favorited"
+                    callback.addBrew(itemData.name, itemData.brewery_type, itemData.country,itemData.city, itemData.state)
+                }
+                else{
+                    binding.favbtn.setImageResource(R.drawable.favorite)
+                    binding.favbtn.tag = "favorite"
+                    callback.removeBrew(itemData.id)
+                }
+            }
+
+            }
 
         }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BrewDataViewHolder {
         val binding = BreweriesContentRvBinding.inflate(LayoutInflater.from(parent.context),parent,false)

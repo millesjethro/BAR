@@ -26,6 +26,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             .circleCrop()
             .into(binding.imgRandomBrewery)
         Glide.with(this)
+            .load("https://img.icons8.com/color/512/bavarian-beer-mug.png")
+            .circleCrop()
+            .into(binding.imgFavBrew)
+        Glide.with(this)
             .load("https://static.vecteezy.com/system/resources/thumbnails/007/522/796/small/abstract-geometric-white-stripe-shapes-with-golden-light-in-gradient-white-background-free-vector.jpg")
             .transform(RoundedCorners(25))
             .override(390,120)
@@ -35,10 +39,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             .transform(RoundedCorners(25))
             .override(390,120)
             .into(binding.brewRandom)
+        Glide.with(this)
+            .load("https://static.vecteezy.com/system/resources/thumbnails/007/522/796/small/abstract-geometric-white-stripe-shapes-with-golden-light-in-gradient-white-background-free-vector.jpg")
+            .transform(RoundedCorners(25))
+            .override(390,120)
+            .into(binding.favorites)
 
 
         binding.brewList.setOnClickListener(this)
         binding.brewRandom.setOnClickListener(this)
+        binding.favorites.setOnClickListener(this)
     }
 
     override fun onClick(p0: View?) {
@@ -51,6 +61,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val intent = Intent(this,RandomBreweries::class.java)
                 startActivity(intent)
             }
+            (R.id.favorites)->{
+                val intent = Intent(this,Favorites::class.java)
+                startActivity(intent)
+            }
+
         }
     }
 }
