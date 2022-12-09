@@ -168,6 +168,7 @@ class ListBreweries : AppCompatActivity(), DataAdapters.DataAdaptersInterface, V
     }
 
     override fun addBrew(
+        id: String,
         name: String,
         brewType: String,
         country: String,
@@ -176,7 +177,7 @@ class ListBreweries : AppCompatActivity(), DataAdapters.DataAdaptersInterface, V
     ) {
         val scope = CoroutineScope(coroutine)
         scope.launch(Dispatchers.IO){
-            operation.insertBrew(name, brewType, country, city, state)
+            operation.insertBrew(id, name, brewType, country, city, state)
             withContext(Dispatchers.Main){
             }
         }

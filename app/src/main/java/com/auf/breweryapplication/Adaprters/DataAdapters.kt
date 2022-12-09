@@ -1,6 +1,7 @@
 package com.auf.breweryapplication.Adaprters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +18,7 @@ import java.io.Serializable
 class DataAdapters(private var brewlist: ArrayList<BrewingInformation>, private var context: Context, private var callback: DataAdaptersInterface) : RecyclerView.Adapter<DataAdapters.BrewDataViewHolder>(), Serializable {
 
     interface  DataAdaptersInterface {
-        fun addBrew(name: String, brewType: String, country: String,city:String, state: String)
+        fun addBrew(id:String,name: String, brewType: String, country: String,city:String, state: String)
         fun removeBrew(id: String)
     }
 
@@ -114,13 +115,14 @@ class DataAdapters(private var brewlist: ArrayList<BrewingInformation>, private 
                     binding.favbtn.tag = "favorited"
                     binding.favbtn.setImageResource(R.drawable.favorited)
                 }
+
             }
 
             binding.favbtn.setOnClickListener{
                 if(binding.favbtn.tag.equals("favorite")){
                     binding.favbtn.setImageResource(R.drawable.favorited)
                     binding.favbtn.tag = "favorited"
-                    callback.addBrew(itemData.name, itemData.brewery_type, itemData.country,itemData.city, itemData.state)
+                    callback.addBrew(itemData.id, itemData.name, itemData.brewery_type, itemData.country,itemData.city, itemData.state)
                 }
                 else{
                     binding.favbtn.setImageResource(R.drawable.favorite)

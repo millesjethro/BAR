@@ -85,6 +85,7 @@
         }
 
         override fun addBrew(
+            id: String,
             name: String,
             brewType: String,
             country: String,
@@ -93,7 +94,7 @@
         ) {
             val scope = CoroutineScope(coroutine + CoroutineName("AddToDatabase"))
             scope.launch(Dispatchers.IO) {
-                operation.insertBrew(name,brewType , country, city, state)
+                operation.insertBrew(id, name,brewType , country, city, state)
             }
 
         }

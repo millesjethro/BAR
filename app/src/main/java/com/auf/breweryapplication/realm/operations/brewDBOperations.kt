@@ -1,5 +1,6 @@
 package com.auf.breweryapplication.realm.operations
 
+import android.util.Log
 import com.auf.breweryapplication.Models.BrewDB
 import com.auf.breweryapplication.Models.BrewingInformation
 import com.auf.breweryapplication.realm.config.RealmConfig
@@ -12,10 +13,10 @@ import kotlinx.coroutines.Dispatchers
 
 class brewDBOperations(private var config: RealmConfiguration) {
 
-    suspend fun insertBrew(name: String, brewType: String, country: String,city:String, state: String){
+    suspend fun insertBrew(id: String, name: String, brewType: String, country: String,city:String, state: String){
         val realm = Realm.getInstance(config)
         realm.executeTransactionAwait(Dispatchers.IO){ realmTransaction ->
-            val brew = BrewRealm(name = name, brewType = brewType, country = country, city = city,state = state )
+            val brew = BrewRealm(id = id,name = name, brewType = brewType, country = country, city = city,state = state )
             realmTransaction.insert(brew)
         }
 
@@ -30,11 +31,12 @@ class brewDBOperations(private var config: RealmConfiguration) {
         realm.executeTransactionAwait(Dispatchers.IO){ realmTransaction ->
             realmResults.addAll(realmTransaction
                 .where(BrewRealm::class.java)
-                .contains("id",id, Case.INSENSITIVE)
+                .contains("id",id, Case.SENSITIVE)
                 .findAll()
                 .map{
                     mapbrew(it)
                 })
+
         }
         return realmResults
     }
